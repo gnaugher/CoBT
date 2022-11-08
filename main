@@ -34,7 +34,7 @@ print("Name -", firstchampion.name, " - Primary Element", firstchampion.primarye
 
 
 #Prompt For Second Champion
-secondchampion = Love
+secondchampion = LightGold
 print("Name -", secondchampion.name, " - Primary Element", secondchampion.primaryelement, " - Attack Value", secondchampion.attackvalue, " - Defensive Value", secondchampion.defensevalue, " - Attack Multiplier,", secondchampion.attackmultiplier, " - Defense Multiplier,", secondchampion.defensivemultiplier)
 
 #Set champion HP
@@ -66,12 +66,12 @@ def battlecalc(championbattlecalc):
     AttackMultiplier = diceroll()
 
     if CanIAttack == "Yes":
-     print(championbattlecalc.name, "rolls a", AttackMultiplier)
+     print(championbattlecalc.name, "rolls a", AttackMultiplier, "attack")
 
      baseattackvalue = championbattlecalc.attackvalue * AttackMultiplier
-     
+     print(baseattackvalue)
     elif CanIAttack == "No":
-     #print(championbattlecalc.name, "misses")
+     print(championbattlecalc.name, "can't attack, attack value is 0")
      baseattackvalue = 0
     
     #Defense Turn
@@ -89,16 +89,17 @@ def battlecalc(championbattlecalc):
     DefenseMultiplier = diceroll()
 
     if CanIDefend == "Yes":
-     print(championbattlecalc.name, "rolls a", DefenseMultiplier)
+     print(championbattlecalc.name, "rolls a", DefenseMultiplier, "for defense")
 
      basedefensevalue = championbattlecalc.defensevalue * DefenseMultiplier
+     print(basedefensevalue)
     
     elif CanIDefend == "No":
-     #print(championbattlecalc.name, "fails to defend themself")
+     print(championbattlecalc.name, "fails to defend themself defense value is 0")
      basedefensevalue = 0
  
-    #print(championbattlecalc.name, "rolls a", AttackMultiplier,  "has", championbattlecalc.attackvalue, "attack and", championbattlecalc.defensevalue, "defense")
-    return baseattackvalue, basedefensevalue, CanIAttack, CanIDefend;
+    print(championbattlecalc.name, "rolls a", AttackMultiplier,  "has", championbattlecalc.attackvalue, "attack and", championbattlecalc.defensevalue, "defense")
+    return baseattackvalue, basedefensevalue, CanIAttack, CanIDefend, AttackMultiplier, DefenseMultiplier
 
 
 #Determine the elemental attack multipliers
@@ -146,13 +147,13 @@ def drawpoweregg():
 firstchamphp = firstchampion.hp
 secondchamphp = secondchampion.hp
 
-def combat(firstchampions, secondchampion, ftotalattackno, stotaldefno, firstchamphp, secondchamphp):
-    print(firstchampion.name, "enters the turn with", firstchamphp, secondchampion.name, "enters the turn with", secondchamphp)
+def combat(firstchampion, secondchampion, ftotalattackno, stotaldefno, firstchamphp, secondchamphp):
+    #print(firstchampion.name, "enters the turn with", firstchamphp, secondchampion.name, "enters the turn with", secondchamphp)
     print(firstchampion.name ,"attacks", secondchampion.name, "with", ftotalattackno, secondchampion.name, "defends with", stotaldefno)
 
     if ftotalattackno == 0 and stotaldefno == 0:
-        print("No attack this turn, both champions rest.")
-##        print("Draw a Power Egg")
+        print("No damage this turn, both champions rest.")
+ ##        print("Draw a Power Egg")
 ##        powereggrefno = drawpoweregg()
 ##        print(firstchampion.name, "pulled Power Egg number",powereggrefno,"!")
 ##        powereggrefno = drawpoweregg()
@@ -174,7 +175,7 @@ def combat(firstchampions, secondchampion, ftotalattackno, stotaldefno, firstcha
 
 #Gameplay
 for turn in turns:
-    #input("Press Enter to Roll...")
+    input("Press Enter to Roll...")
     if firstchamphp <= 0 or secondchamphp <= 0:
         if firstchamphp <= 0:
             print(firstchampion.name, "is knocked out, ", secondchampion.name, "wins!!!")
@@ -196,20 +197,27 @@ for turn in turns:
 ##            break
         
         print("Turn number", turn)
-        
-         
-        baseattackvaluefirstchamp, basedefensevaluefirstchamp, caniattack1, canidefend1  = battlecalc(firstchampion)
-        #print(AttackMultiplier, baseattackvaluefirstchamp, basedefensevaluefirstchamp, caniattack1, canidefend1)
-        
-        baseattackvaluesecondchamp, basedefensevaluesecondchamp, caniattack2, canidefend2 = battlecalc(secondchampion)
 
+        print(firstchampion.name, "enters the turn with", firstchamphp, secondchampion.name, "enters the turn with", secondchamphp)
+                 
+        baseattackvaluefirstchamp, basedefensevaluefirstchamp, caniattack1, canidefend1, attackmultiplier, defensemultiplier = battlecalc(firstchampion)
+
+        baseattackvaluesecondchamp, basedefensevaluesecondchamp, caniattack2, canidefend2, attackmultiplier, defensemultiplier = battlecalc(secondchampion)
+        
         ftotalattackno, ftotaldefno = elementattackmulticalc(firstchampion, secondchampion, baseattackvaluefirstchamp, basedefensevaluefirstchamp)
 
         stotalattackno, stotaldefno = elementattackmulticalc(firstchampion, secondchampion, baseattackvaluesecondchamp, basedefensevaluesecondchamp)
-        
-        combatoutcome = combat(firstchampion, secondchampion, ftotalattackno, stotaldefno, firstchamphp, secondchamphp)
-        firstchamphp = combatoutcome[0]
-        secondchamphp = combatoutcome[1]
+
+        if (turn % 2) != 0:
+            combatoutcome = combat(firstchampion, secondchampion, ftotalattackno, stotaldefno, firstchamphp, secondchamphp)
+            firstchamphp = combatoutcome[0]
+            secondchamphp = combatoutcome[1]
+        else:
+            combatoutcome = combat(secondchampion, firstchampion, ftotalattackno, stotaldefno,secondchamphp, firstchamphp)
+            firstchamphp = combatoutcome[1]
+            secondchamphp = combatoutcome[0]
+
+
 
 print(firstchampion.name, "has", firstchamphp, secondchampion.name, "has", secondchamphp)
 print("The round is over.")
@@ -219,8 +227,11 @@ print("The round is over.")
 
 
 
-
-
+##
+##
+##        else:
+##            print(secondchampion.name,"'s defense is SHATTERED!")
+        
 
 
 
@@ -270,3 +281,14 @@ print("The round is over.")
 ##                combatoutcome = combat(secondchampion, firstchampion, ftotalattackno, stotaldefno,secondchamphp, firstchamphp)
 ##                firstchamphp = combatoutcome[0]
 ##                secondchamphp = combatoutcome[1]
+
+
+
+
+
+
+
+
+
+
+
