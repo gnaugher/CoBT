@@ -47,7 +47,7 @@ turns = range(1, 25)
 
 #Attack\Defense Value Computation
 
-def battlecalc(championbattlecalc):
+def battlecalcoff(championbattlecalco):
     #Offense Turn
     #Flip The Coin
     import random
@@ -66,18 +66,24 @@ def battlecalc(championbattlecalc):
     AttackMultiplier = diceroll()
 
     if CanIAttack == "Yes":
-     print(championbattlecalc.name, "rolls a", AttackMultiplier, "attack")
-
-     baseattackvalue = championbattlecalc.attackvalue * AttackMultiplier
-     print(baseattackvalue)
+     
+     baseattackvalue = championbattlecalco.attackvalue * AttackMultiplier
+     print(championbattlecalco.name, "rolls a", AttackMultiplier,  "has", championbattlecalco.attackvalue, "attack and", championbattlecalco.defensevalue, "defense")
+     print("Base attack is", baseattackvalue)
     elif CanIAttack == "No":
-     print(championbattlecalc.name, "can't attack, attack value is 0")
+     print(championbattlecalco.name, "can't attack, attack value is 0")
      baseattackvalue = 0
-    
-    #Defense Turn
 
+    
+    return baseattackvalue, CanIAttack, AttackMultiplier
+    
+#Defense Turn
+def battlecalcdef(championbattlecalcd):
     basedefensevalue = 0
     totaldefensevalue = 0
+
+    import random
+    
     def cointoss():
         return random.choice(["Yes", "No"])
 
@@ -89,36 +95,39 @@ def battlecalc(championbattlecalc):
     DefenseMultiplier = diceroll()
 
     if CanIDefend == "Yes":
-     print(championbattlecalc.name, "rolls a", DefenseMultiplier, "for defense")
-
-     basedefensevalue = championbattlecalc.defensevalue * DefenseMultiplier
-     print(basedefensevalue)
-    
+     
+     basedefensevalue = championbattlecalcd.defensevalue * DefenseMultiplier
+     
+     print(championbattlecalcd.name, "rolls a", DefenseMultiplier,  "has", championbattlecalcd.defensevalue, "attack and", championbattlecalcd.defensevalue, "defense")
+     print("Base defense is", basedefensevalue)
+     
     elif CanIDefend == "No":
-     print(championbattlecalc.name, "fails to defend themself defense value is 0")
+     print(championbattlecalcd.name, "fails to defend themself defense value is 0")
      basedefensevalue = 0
  
-    print(championbattlecalc.name, "rolls a", AttackMultiplier,  "has", championbattlecalc.attackvalue, "attack and", championbattlecalc.defensevalue, "defense")
-    return baseattackvalue, basedefensevalue, CanIAttack, CanIDefend, AttackMultiplier, DefenseMultiplier
+    
+    return basedefensevalue, CanIDefend, DefenseMultiplier
+
+
 
 
 #Determine the elemental attack multipliers
-def elementattackmulticalc(firstchampion, secondchampion, baseattackvalue, basedefensevalue):
- totalattackvalue=baseattackvalue
+def elementattackmulticalc(firstchampion, secondchampion, baseattackvaluefirstchamp, basedefensevaluesecondchamp):
+ totalattackvalue=baseattackvaluefirstchamp
  
  if firstchampion.attackmultiplier == secondchampion.primaryelement:
-  totalattackvalue = baseattackvalue * 2
+  totalattackvalue = baseattackvaluefirstchamp * 2
 
  
  else:
   
-  totalattackvalue = baseattackvalue
+  totalattackvalue = baseattackvaluefirstchamp
  #Determine the defensive elemental multiplier
  if firstchampion.primaryelement == secondchampion.defensivemultiplier:
-  totaldefensevalue = basedefensevalue * 2
+  totaldefensevalue = basedefensevaluesecondchamp * 2
 
  else:
-  totaldefensevalue = basedefensevalue 
+  totaldefensevalue = basedefensevaluesecondchamp 
 
  return totalattackvalue, totaldefensevalue
 
@@ -143,122 +152,129 @@ def drawpoweregg():
      powereggrefno = random.randint(1,10)
      return powereggrefno
 
-###Engage Combat
-firstchamphp = firstchampion.hp
-secondchamphp = secondchampion.hp
+baseattackvaluefirstchamp, caniattack1, attackmultiplier = battlecalcoff(firstchampion)
 
-def combat(firstchampion, secondchampion, ftotalattackno, stotaldefno, firstchamphp, secondchamphp):
-    #print(firstchampion.name, "enters the turn with", firstchamphp, secondchampion.name, "enters the turn with", secondchamphp)
-    print(firstchampion.name ,"attacks", secondchampion.name, "with", ftotalattackno, secondchampion.name, "defends with", stotaldefno)
-
-    if ftotalattackno == 0 and stotaldefno == 0:
-        print("No damage this turn, both champions rest.")
- ##        print("Draw a Power Egg")
-##        powereggrefno = drawpoweregg()
-##        print(firstchampion.name, "pulled Power Egg number",powereggrefno,"!")
-##        powereggrefno = drawpoweregg()
-##        print( secondchampion.name, "pulled Power Egg number",powereggrefno, "!")
+basedefensevaluesecondchamp, canidefend2, defensemultiplier = battlecalcdef(secondchampion)
         
-    elif ftotalattackno > stotaldefno:
-      #print("Attack higher than defense, run first condition")
-      damage = ftotalattackno - stotaldefno
-      print(secondchampion.name,"loses", damage, "HP")
-      secondchamphp = secondchamphp - damage
-      #print(secondchamphp, "HP remaining for", secondchampion.name)
-    else:
-        #print("Defense higher than attack, run second condition")
-        damage = stotaldefno - ftotalattackno
-        print(firstchampion.name,"loses", damage, "HP")
-        firstchamphp = firstchamphp - damage
-        #print(firstchamphp, "HP remaining for", firstchampion.name)
-    return firstchamphp, secondchamphp
-
-#Gameplay
-for turn in turns:
-    input("Press Enter to Roll...")
-    if firstchamphp <= 0 or secondchamphp <= 0:
-        if firstchamphp <= 0:
-            print(firstchampion.name, "is knocked out, ", secondchampion.name, "wins!!!")
-        else:
-            print(secondchampion.name, "is knocked out, ", firstchampion.name, "wins!!!")
-            
-        break
+ftotalattackno, ftotaldefno = elementattackmulticalc(firstchampion, secondchampion, baseattackvaluefirstchamp, basedefensevaluesecondchamp)
 
 
-
-    else:
-
-##                #ImportMessageBoxCode
-##        import ctypes  # An included library with Python install.
-##        def Mbox(title, text, style):
-##            return ctypes.windll.user32.MessageBoxW(0, text, title, style)
-##        x = Mbox('Welcome', 'Welcome to Champions of the Bobiotic Table. Do you want to play?', 4)
-##        if x == 7:
-##            break
-        
-        print("Turn number", turn)
-
-        print(firstchampion.name, "enters the turn with", firstchamphp, secondchampion.name, "enters the turn with", secondchamphp)
-                 
-        baseattackvaluefirstchamp, basedefensevaluefirstchamp, caniattack1, canidefend1, attackmultiplier, defensemultiplier = battlecalc(firstchampion)
-
-        baseattackvaluesecondchamp, basedefensevaluesecondchamp, caniattack2, canidefend2, attackmultiplier, defensemultiplier = battlecalc(secondchampion)
-        
-        ftotalattackno, ftotaldefno = elementattackmulticalc(firstchampion, secondchampion, baseattackvaluefirstchamp, basedefensevaluefirstchamp)
-
-        stotalattackno, stotaldefno = elementattackmulticalc(firstchampion, secondchampion, baseattackvaluesecondchamp, basedefensevaluesecondchamp)
-
-        if (turn % 2) != 0:
-            combatoutcome = combat(firstchampion, secondchampion, ftotalattackno, stotaldefno, firstchamphp, secondchamphp)
-            firstchamphp = combatoutcome[0]
-            secondchamphp = combatoutcome[1]
-        else:
-            combatoutcome = combat(secondchampion, firstchampion, ftotalattackno, stotaldefno,secondchamphp, firstchamphp)
-            firstchamphp = combatoutcome[1]
-            secondchamphp = combatoutcome[0]
-
-
-
-print(firstchampion.name, "has", firstchamphp, secondchampion.name, "has", secondchamphp)
-print("The round is over.")
-
-    
-
-
-
-
+#####Engage Combat
+##firstchamphp = firstchampion.hp
+##secondchamphp = secondchampion.hp
+##
+##def combat(firstchampion, secondchampion, ftotalattackno, stotaldefno, firstchamphp, secondchamphp):
+##    #print(firstchampion.name, "enters the turn with", firstchamphp, secondchampion.name, "enters the turn with", secondchamphp)
+##    print(firstchampion.name ,"attacks", secondchampion.name, "with", ftotalattackno, secondchampion.name, "defends with", stotaldefno)
+##
+##    if ftotalattackno == 0 and stotaldefno == 0:
+##        print("No damage this turn, both champions rest.")
+## ##        print("Draw a Power Egg")
+####        powereggrefno = drawpoweregg()
+####        print(firstchampion.name, "pulled Power Egg number",powereggrefno,"!")
+####        powereggrefno = drawpoweregg()
+####        print( secondchampion.name, "pulled Power Egg number",powereggrefno, "!")
+##        
+##    elif ftotalattackno > stotaldefno:
+##      #print("Attack higher than defense, run first condition")
+##      damage = ftotalattackno - stotaldefno
+##      print(secondchampion.name,"loses", damage, "HP")
+##      secondchamphp = secondchamphp - damage
+##      #print(secondchamphp, "HP remaining for", secondchampion.name)
+##    else:
+##        #print("Defense higher than attack, run second condition")
+##        damage = stotaldefno - ftotalattackno
+##        print(firstchampion.name,"loses", damage, "HP")
+##        firstchamphp = firstchamphp - damage
+##        #print(firstchamphp, "HP remaining for", firstchampion.name)
+##    return firstchamphp, secondchamphp
+##
+###Gameplay
+##for turn in turns:
+##    input("Press Enter to Roll...")
+##    if firstchamphp <= 0 or secondchamphp <= 0:
+##        if firstchamphp <= 0:
+##            print(firstchampion.name, "is knocked out, ", secondchampion.name, "wins!!!")
+##        else:
+##            print(secondchampion.name, "is knocked out, ", firstchampion.name, "wins!!!")
+##            
+##        break
+##
+##
+##
+##    else:
+##
+####                #ImportMessageBoxCode
+####        import ctypes  # An included library with Python install.
+####        def Mbox(title, text, style):
+####            return ctypes.windll.user32.MessageBoxW(0, text, title, style)
+####        x = Mbox('Welcome', 'Welcome to Champions of the Bobiotic Table. Do you want to play?', 4)
+####        if x == 7:
+####            break
+##        
+##        print("Turn number", turn)
+##
+##        print(firstchampion.name, "enters the turn with", firstchamphp, secondchampion.name, "enters the turn with", secondchamphp)
+##                 
+##        baseattackvaluefirstchamp, basedefensevaluefirstchamp, caniattack1, canidefend1, attackmultiplier, defensemultiplier = battlecalco(firstchampion)
+##
+##        baseattackvaluesecondchamp, basedefensevaluesecondchamp, caniattack2, canidefend2, attackmultiplier, defensemultiplier = battlecalcd(secondchampion)
+##        
+##        ftotalattackno, ftotaldefno = elementattackmulticalc(firstchampion, secondchampion, baseattackvaluefirstchamp, basedefensevaluefirstchamp)
+##
+##        stotalattackno, stotaldefno = elementattackmulticalc(firstchampion, secondchampion, baseattackvaluesecondchamp, basedefensevaluesecondchamp)
+##
+##        if (turn % 2) != 0:
+##            combatoutcome = combat(firstchampion, secondchampion, ftotalattackno, stotaldefno, firstchamphp, secondchamphp)
+##            firstchamphp = combatoutcome[0]
+##            secondchamphp = combatoutcome[1]
+##        else:
+##            combatoutcome = combat(secondchampion, firstchampion, ftotalattackno, stotaldefno,secondchamphp, firstchamphp)
+##            firstchamphp = combatoutcome[1]
+##            secondchamphp = combatoutcome[0]
+##
+##
+##
+##print(firstchampion.name, "has", firstchamphp, secondchampion.name, "has", secondchamphp)
+##print("The round is over.")
+##
+##    
+##
+##
+##
+##
 ##
 ##
 ##        else:
 ##            print(secondchampion.name,"'s defense is SHATTERED!")
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+##        
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
+##
 ##    
 ##
 ##    print("can 1 attack?", caniattack1, ftotalattackno, "can 1 defend", canidefend1,ftotaldefno)
@@ -281,7 +297,6 @@ print("The round is over.")
 ##                combatoutcome = combat(secondchampion, firstchampion, ftotalattackno, stotaldefno,secondchamphp, firstchamphp)
 ##                firstchamphp = combatoutcome[0]
 ##                secondchamphp = combatoutcome[1]
-
 
 
 
