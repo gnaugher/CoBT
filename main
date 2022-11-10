@@ -43,7 +43,7 @@ secondchamphp = secondchampion.hp
 
 
 #Start the round
-turns = range(1, 25)
+turns = range(1, 5)
 
 #Attack\Defense Value Computation
 
@@ -187,7 +187,7 @@ secondchamphp = secondchampion.hp
 
 #Gameplay
 for turn in turns:
-    input("Press Enter to Roll...")
+    #input("Press Enter to Roll...")
     if firstchamphp <= 0 or secondchamphp <= 0:
         if firstchamphp <= 0:
             print(firstchampion.name, "is knocked out, ", secondchampion.name, "wins!!!")
@@ -200,13 +200,13 @@ for turn in turns:
 
     else:
 
-##                #ImportMessageBoxCode
-##        import ctypes  # An included library with Python install.
-##        def Mbox(title, text, style):
-##            return ctypes.windll.user32.MessageBoxW(0, text, title, style)
-##        x = Mbox('Welcome', 'Welcome to Champions of the Bobiotic Table. Do you want to play?', 4)
-##        if x == 7:
-##            break
+                #ImportMessageBoxCode
+        import ctypes  # An included library with Python install.
+        def Mbox(title, text, style):
+            return ctypes.windll.user32.MessageBoxW(0, text, title, style)
+        x = Mbox('Welcome', 'Welcome to Champions of the Bobiotic Table. Do you want to play?', 4)
+        if x == 7:
+            break
         
         print("Turn number", turn)
 
