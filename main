@@ -25,6 +25,26 @@ Love = ChampionCard("Love", "Space", 1, 9, "Fire", "Ice", 100)
 DarkWind = ChampionCard("DarkWind", "Wind", 9, 1, "Earth", "Fire", 100)
 DarkEarth = ChampionCard("DarkEarth", "Earth", 8, 2, "Ice", "Fire", 100)
 LightGold = ChampionCard("LightGold", "Fire", 4, 6, "Water", "Earth", 100)
+DarkWater = ChampionCard("DarkWater", "Water", 5, 5, "Ice", "Fire", 100)
+Poison = ChampionCard("Poison", "Ice", 5, 5, "Space", "Water", 100)
+Love = ChampionCard("Love", "Space", 1, 9, "Fire", "Ice", 100)
+DarkWind = ChampionCard("DarkWind", "Wind", 9, 1, "Earth", "Fire", 100)
+DarkEarth = ChampionCard("DarkEarth", "Earth", 8, 2, "Ice", "Fire", 100)
+LightGold = ChampionCard("LightGold", "Fire", 4, 6, "Water", "Earth", 100)
+Fire = ChampionCard("Fire", "Fire", 7, 2, "Ice", "Fire", 100)
+Water = ChampionCard("Water", "Water", 3, 7, "Space", "Water", 100)
+Earth = ChampionCard("Earth", "Earth", 5, 5, "Fire", "Ice", 100)
+Ice = ChampionCard("Ice", "Ice", 4, 6, "Earth", "Fire", 100)
+Wind = ChampionCard("Wind", "Wind", 8, 2, "Ice", "Fire", 100)
+Lightening = ChampionCard("Lightening", "Fire", 4, 6, "Water", "Earth", 100)
+Lava = ChampionCard("Lava", "Fire", 9, 1, "Ice", "Fire", 100)
+Metal = ChampionCard("Metal", "Earth", 4, 6, "Space", "Water", 100)
+Dark = ChampionCard("Dark", "Space", 1, 9, "Fire", "Ice", 100)
+DarkFire = ChampionCard("DarkWind", "Water", 2, 7, "Earth", "Fire", 100)
+Brick = ChampionCard("Brick", "Earth", 8, 2, "Ice", "Fire", 100)
+Gold = ChampionCard("Gold", "Earth", 5, 5, "Water", "Earth", 100)
+
+
 
 
 #Prompt For First Champion
