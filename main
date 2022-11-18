@@ -1,53 +1,59 @@
 class ChampionCard:
-    def __init__(self, name, primaryelement, attackvalue, defensevalue, attackmultiplier, defensivemultiplier, hp):
+    def __init__(self, name, primaryelement, attackvalue, defensevalue, attackmultiplierav, attackmultiplier, defensivemultiplier, defensivemultiplierav, hp):
         self.name = name
         self.primaryelement = primaryelement
         self.attackvalue = attackvalue
         self.defensevalue = defensevalue
+        self.attackmultiplierav = attackmultiplierav
         self.attackmultiplier = attackmultiplier
         self.defensivemultiplier = defensivemultiplier
+        self.defensivemultiplierav = defensivemultiplierav
         self.hp = hp
 
-
-class PowerEgg:
-    def __init__(self, description, champion1, champion2, attackmod, defensemod, hpmod):
-        self.description = description
-        self.champion1 = champion1
-        self.champion2 = champion2
-        self.attackmod = attackmod
-        self.defensemod = defensemod
-        self.hpmod = hpmod
-       
-        
-DarkWater = ChampionCard("DarkWater", "Water", 5, 5, "Ice", "Fire", 100)
-Poison = ChampionCard("Poison", "Ice", 5, 5, "Space", "Water", 100)
-Love = ChampionCard("Love", "Space", 1, 9, "Fire", "Ice", 100)
-DarkWind = ChampionCard("DarkWind", "Wind", 9, 1, "Earth", "Fire", 100)
-DarkEarth = ChampionCard("DarkEarth", "Earth", 8, 2, "Ice", "Fire", 100)
-LightGold = ChampionCard("LightGold", "Fire", 4, 6, "Water", "Earth", 100)
-DarkWater = ChampionCard("DarkWater", "Water", 5, 5, "Ice", "Fire", 100)
-Poison = ChampionCard("Poison", "Ice", 5, 5, "Space", "Water", 100)
-Love = ChampionCard("Love", "Space", 1, 9, "Fire", "Ice", 100)
-DarkWind = ChampionCard("DarkWind", "Wind", 9, 1, "Earth", "Fire", 100)
-DarkEarth = ChampionCard("DarkEarth", "Earth", 8, 2, "Ice", "Fire", 100)
-LightGold = ChampionCard("LightGold", "Fire", 4, 6, "Water", "Earth", 100)
-Fire = ChampionCard("Fire", "Fire", 7, 2, "Ice", "Fire", 100)
-Water = ChampionCard("Water", "Water", 3, 7, "Space", "Water", 100)
-Earth = ChampionCard("Earth", "Earth", 5, 5, "Fire", "Ice", 100)
-Ice = ChampionCard("Ice", "Ice", 4, 6, "Earth", "Fire", 100)
-Wind = ChampionCard("Wind", "Wind", 8, 2, "Ice", "Fire", 100)
-Lightening = ChampionCard("Lightening", "Fire", 4, 6, "Water", "Earth", 100)
-Lava = ChampionCard("Lava", "Fire", 9, 1, "Ice", "Fire", 100)
-Metal = ChampionCard("Metal", "Earth", 4, 6, "Space", "Water", 100)
-Dark = ChampionCard("Dark", "Space", 1, 9, "Fire", "Ice", 100)
-DarkFire = ChampionCard("DarkWind", "Water", 2, 7, "Earth", "Fire", 100)
-Brick = ChampionCard("Brick", "Earth", 8, 2, "Ice", "Fire", 100)
-Gold = ChampionCard("Gold", "Earth", 5, 5, "Water", "Earth", 100)
+#DefineTheChampions        
+DarkWater = ChampionCard("DarkWater", "Water", 5, 5, "Yes", "Ice", "Fire", "Yes", 100)
+Poison = ChampionCard("Poison", "Ice", 5, 5, "Yes","Space", "Water", "Yes",100)
+Love = ChampionCard("Love", "Space", 1, 9,"Yes", "Fire", "Ice","Yes", 100)
+DarkWind = ChampionCard("DarkWind", "Wind", 9, 1, "Yes", "Earth", "Fire", "Yes", 100)
+DarkEarth = ChampionCard("DarkEarth", "Earth", 8, 2, "Yes","Ice", "Fire", "Yes",100)
+LightGold = ChampionCard("LightGold", "Fire", 4, 6, "Yes", "Water", "Earth", "Yes", 100)
+Fire = ChampionCard("Fire", "Fire", 7, 2, "Yes","Ice", "Fire","Yes", 100)
+Water = ChampionCard("Water", "Water", 3, 7, "Yes","Space", "Water","Yes", 100)
+Earth = ChampionCard("Earth", "Earth", 5, 5, "Yes","Fire", "Ice", "Yes",100)
+Ice = ChampionCard("Ice", "Ice", 4, 6, "Yes","Earth", "Fire","Yes", 100)
+Wind = ChampionCard("Wind", "Wind", 8, 2, "Yes","Ice", "Fire", "Yes",100)
+Lightening = ChampionCard("Lightening", "Fire", 4, 6, "Yes","Water", "Earth","Yes", 100)
+Lava = ChampionCard("Lava", "Fire", 9, 1,"Yes", "Ice", "Fire", "Yes",100)
+Metal = ChampionCard("Metal", "Earth", 4, 6,"Yes", "Space", "Water","Yes", 100)
+Dark = ChampionCard("Dark", "Space", 1, 9, "Yes","Fire", "Ice", "Yes",100)
+DarkFire = ChampionCard("DarkWind", "Water", 2, 7, "Yes","Earth", "Fire","Yes", 100)
+Brick = ChampionCard("Brick", "Earth", 8, 2, "Yes","Ice", "Fire","Yes", 100)
+Gold = ChampionCard("Gold", "Earth", 5, 5, "Yes","Water", "Earth", "Yes",100)
 
 
+#SelectFirstChampion
+#primaryelementselect = input("Type the main element you wish to use: Water, Ice, Space, Wind, Earth, Fire ")
 
 
 #Prompt For First Champion
+##from tkinter import *
+##
+##top = Tk()
+##mb = Menubutton ( top, text = 'text')
+##mb.grid()
+##mb.menu = Menu ( mb, tearoff = 0 )
+##mb['menu'] = mb.menu
+##cVar = IntVar()
+##aVar = IntVar()
+##mb.menu.add_checkbutton ( label ='Contact', variable = cVar )
+##mb.menu.add_checkbutton ( label = 'About', variable = aVar )
+##mb.pack()
+##top.mainloop()
+
+
+
+
+
 firstchampion = DarkWind
 #NameThefirstChampion
 print("Name -", firstchampion.name, " - Primary Element", firstchampion.primaryelement, " - Attack Value", firstchampion.attackvalue, " - Defensive Value", firstchampion.defensevalue, " - Attack Multiplier,", firstchampion.attackmultiplier, " - Defense Multiplier,", firstchampion.defensivemultiplier)
@@ -64,6 +70,7 @@ secondchamphp = secondchampion.hp
 
 #Start the round
 turns = range(1, 5)
+attackmultiplierinv = 1
 
 #Attack\Defense Value Computation
 
@@ -154,37 +161,39 @@ def elementattackmulticalc(firstchampion, secondchampion, baseattackvaluefirstch
 
 #Define the Power Eggs
 class PowerEgg:
-    def __init__(self, refno, description, champion1, champion2, champattack, champdefense, ch1hpmod, ch2hpmod):
+    def __init__(self, refno, description):
         self.refno = refno
         self.description = description
-        self.champion1 = champion1
-        self.champion2 = champion2
-        self.champattack = champattack
-        self.defensemod = champdefense
-        self.ch1hpmod = ch1hpmod
-        self.ch2hpmod = ch2hpmod
 
 
-pecombineattackanddefense = PowerEgg(1, "Combine Attack and Defense Attributes", firstchampion, secondchampion, firstchampion.attackvalue, firstchampion.defensevalue, firstchampion.hp, secondchampion.hp)
+#DefineThePowerEggs
+PowerStrike = PowerEgg("1", "This attack is worth 50% of your opponents health.")
+DoubleAttack = PowerEgg("2", "Double your attack value, use it to strike.")
+DoubleDefAttack = PowerEgg("3", "Double your defense value, use it to attack.")
+MirrorAttack = PowerEgg("4", "Take your opponents attack value.")
+RegainHP = PowerEgg("5", "Regain 20 HP.")
+SwitchHP = PowerEgg("6", "Switch remaining HP with your opponent.")
+PoisonAttack = PowerEgg("7", "Opponent loses 20HP, you lose 10HP.")
+CombinedAttack = PowerEgg("8", "Combine the attack values of attacker and defender.")
+RestoreElementalMulti = PowerEgg("9", "Reset Elemental Multiplier.")
+InstaKO = PowerEgg("10", "Roll a 6 and instantly knock out your opponent.")
+
+poweregglib = [PowerStrike, DoubleAttack, DoubleDefAttack, MirrorAttack, RegainHP, SwitchHP, PoisonAttack, CombinedAttack, RestoreElementalMulti, InstaKO]  
  
-def drawpoweregg():
-     import random
-     powereggrefno = random.randint(1,10)
-     return powereggrefno
-
-
-
-def combat(firstchampion, secondchampion, ftotalattackno, stotaldefno, firstchamphp, secondchamphp):
+def combat(firstchampion, secondchampion, ftotalattackno, stotaldefno, firstchamphp, secondchamphp, poweregglib):
     #print(firstchampion.name, "enters the turn with", firstchamphp, secondchampion.name, "enters the turn with", secondchamphp)
     print(firstchampion.name ,"attacks", secondchampion.name, "with", ftotalattackno, secondchampion.name, "defends with", stotaldefno)
 
     if ftotalattackno == 0 and stotaldefno == 0:
-        print("No damage this turn, both champions rest.")
- ##        print("Draw a Power Egg")
-##        powereggrefno = drawpoweregg()
-##        print(firstchampion.name, "pulled Power Egg number",powereggrefno,"!")
-##        powereggrefno = drawpoweregg()
-##        print( secondchampion.name, "pulled Power Egg number",powereggrefno, "!")
+        
+        print("Draw a Power Egg")
+        import random
+        powereggrefno = random.randint(1,10)
+        
+        print(firstchampion.name, "pulled Power Egg number",powereggrefno, poweregglib[powereggrefno].description, "!")
+
+        powereggrefno = random.randint(1,10)
+        print(secondchampion.name, "pulled Power Egg number",powereggrefno, poweregglib[powereggrefno].description, "!")
         
     elif ftotalattackno > stotaldefno:
       #print("Attack higher than defense, run first condition")
@@ -220,11 +229,11 @@ for turn in turns:
 
     else:
 
-                #ImportMessageBoxCode
+        #ImportMessageBoxCode
         import ctypes  # An included library with Python install.
         def Mbox(title, text, style):
             return ctypes.windll.user32.MessageBoxW(0, text, title, style)
-        x = Mbox('Welcome', 'Welcome to Champions of the Bobiotic Table. Do you want to play?', 4)
+        x = Mbox('Welcome', 'Are you ready to Battle?', 4)
         if x == 7:
             break
         
@@ -240,7 +249,7 @@ for turn in turns:
             basedefensevaluesecondchamp, canidefend2, defensemultiplier = battlecalcdef(secondchampion)
                     
             ftotalattackno, stotaldefno = elementattackmulticalc(firstchampion, secondchampion, baseattackvaluefirstchamp, basedefensevaluesecondchamp)
-            combatoutcome = combat(firstchampion, secondchampion, ftotalattackno, stotaldefno, firstchamphp, secondchamphp)
+            combatoutcome = combat(firstchampion, secondchampion, ftotalattackno, stotaldefno, firstchamphp, secondchamphp, poweregglib)
             firstchamphp = combatoutcome[0]
             secondchamphp = combatoutcome[1]
         else:
@@ -251,7 +260,7 @@ for turn in turns:
                     
             ftotalattackno, stotaldefno = elementattackmulticalc(firstchampion, secondchampion, baseattackvaluefirstchamp, basedefensevaluesecondchamp)
 
-            combatoutcome = combat(secondchampion, firstchampion, ftotalattackno, stotaldefno,secondchamphp, firstchamphp)
+            combatoutcome = combat(secondchampion, firstchampion, ftotalattackno, stotaldefno,secondchamphp, firstchamphp, poweregglib)
             firstchamphp = combatoutcome[1]
             secondchamphp = combatoutcome[0]
 
@@ -259,73 +268,3 @@ for turn in turns:
 
 print(firstchampion.name, "has", firstchamphp, secondchampion.name, "has", secondchamphp)
 print("The round is over.")
-
-##    
-##
-##
-##
-##
-##
-##
-##        else:
-##            print(secondchampion.name,"'s defense is SHATTERED!")
-##        
-##
-##
-##
-##
-##
-##
-##
-##
-##
-##
-##
-##
-##
-##
-##
-##
-##
-##
-##
-##
-##
-##
-##
-##
-##
-##
-##
-##    
-##
-##    print("can 1 attack?", caniattack1, ftotalattackno, "can 1 defend", canidefend1,ftotaldefno)
-##    print("can 2 attack?", caniattack2, stotalattackno, "can 2 defend", canidefend2, stotaldefno)
-##    print("Are the 1st attack and defend values both Zero?", bool(ftotalattackno and ftotaldefno == 0))  
-##    print("Are the 2nd attack and defend values both Zero?", bool(stotalattackno and stotaldefno == 0))
-##    print("Is the 1st attack and 2nd defend values both Zero?", bool(ftotalattackno and stotaldefno == 0))
-##    
-##    if (turn % 2) != 0:
-##
-##     if (ftotalattackno == 0 and stotaldefno == 0):
-##         print("Draw Power Eggs")
-##     else:
-##             combatoutcome = combat(firstchampion, secondchampion, ftotalattackno, stotaldefno, firstchamphp, secondchamphp)
-##             firstchamphp = combatoutcome[0]
-##             secondchamphp = combatoutcome[1]
-##            
-##    else:
-##                
-##                combatoutcome = combat(secondchampion, firstchampion, ftotalattackno, stotaldefno,secondchamphp, firstchamphp)
-##                firstchamphp = combatoutcome[0]
-##                secondchamphp = combatoutcome[1]
-
-
-
-
-
-
-
-
-
-
