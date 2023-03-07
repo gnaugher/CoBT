@@ -1,0 +1,99 @@
+import tkinter
+from tkinter import ttk
+from tkinter import messagebox
+
+class ChampionCard:
+    def __init__(self, name, primaryelement, attackvalue, defensevalue, attackmultiplierav, attackmultiplier, defensivemultiplier, defensivemultiplierav, hp):
+        self.name = name
+        self.primaryelement = primaryelement
+        self.attackvalue = attackvalue
+        self.defensevalue = defensevalue
+        self.attackmultiplierav = attackmultiplierav
+        self.attackmultiplier = attackmultiplier
+        self.defensivemultiplier = defensivemultiplier
+        self.defensivemultiplierav = defensivemultiplierav
+        self.hp = hp
+
+
+class PowerEgg:
+    def __init__(self, description, champion1, champion2, attackmod, defensemod, hpmod):
+        self.description = description
+        self.champion1 = champion1
+        self.champion2 = champion2
+        self.attackmod = attackmod
+        self.defensemod = defensemod
+        self.hpmod = hpmod
+        
+       
+
+#DefineTheChampions        
+DarkWater = ChampionCard("DarkWater", "Water", 5, 5, "Yes", "Ice", "Fire", "Yes", 100)
+Poison = ChampionCard("Poison", "Ice", 5, 5, "Yes","Space", "Water", "Yes",100)
+Love = ChampionCard("Love", "Space", 1, 9,"Yes", "Fire", "Ice","Yes", 100)
+DarkWind = ChampionCard("DarkWind", "Wind", 9, 1, "Yes", "Earth", "Fire", "Yes", 100)
+DarkEarth = ChampionCard("DarkEarth", "Earth", 8, 2, "Yes","Ice", "Fire", "Yes",100)
+LightGold = ChampionCard("LightGold", "Fire", 4, 6, "Yes", "Water", "Earth", "Yes", 100)
+Fire = ChampionCard("Fire", "Fire", 7, 2, "Yes","Ice", "Fire","Yes", 100)
+Water = ChampionCard("Water", "Water", 3, 7, "Yes","Space", "Water","Yes", 100)
+Earth = ChampionCard("Earth", "Earth", 5, 5, "Yes","Fire", "Ice", "Yes",100)
+Ice = ChampionCard("Ice", "Ice", 4, 6, "Yes","Earth", "Fire","Yes", 100)
+Wind = ChampionCard("Wind", "Wind", 8, 2, "Yes","Ice", "Fire", "Yes",100)
+Lightening = ChampionCard("Lightening", "Fire", 4, 6, "Yes","Water", "Earth","Yes", 100)
+Lava = ChampionCard("Lava", "Fire", 9, 1,"Yes", "Ice", "Fire", "Yes",100)
+Metal = ChampionCard("Metal", "Earth", 4, 6,"Yes", "Space", "Water","Yes", 100)
+Dark = ChampionCard("Dark", "Space", 1, 9, "Yes","Fire", "Ice", "Yes",100)
+DarkFire = ChampionCard("DarkWind", "Water", 2, 7, "Yes","Earth", "Fire","Yes", 100)
+Brick = ChampionCard("Brick", "Earth", 8, 2, "Yes","Ice", "Fire","Yes", 100)
+Gold = ChampionCard("Gold", "Earth", 5, 5, "Yes","Water", "Earth", "Yes",100)        
+
+#Save all the champions
+championslist = [DarkWater,Poison,Love ,DarkWind ,DarkEarth ,LightGold ,Fire ,Water ,Earth ,Ice ,Wind ,Lightening ,Lava ,Metal ,Dark ,DarkFire ,Brick ,Gold]
+
+
+def list_champs_from_core():
+    #take the selection from champ 1 name combobox and run it through the champions list
+    #get the value from the combobox
+    champ_1_selected_element = champ_1_elemental_elements.get()
+    # take the selection from champ 2 name combobox and run it through the champs list 
+    #get the value from the champ 2 combobox
+    champ_2_selected_element = champ_2_elemental_elements.get()
+
+    #print the selections
+    print(champ_1_selected_element, champ_2_selected_element)
+    #put the champions in a list for the next selection stage
+
+
+
+window = tkinter.Tk()
+window.geometry("450x200")  # Size of the window 
+window.title("Select Your Champion")
+
+
+champ_1_elemental_label = tkinter.Label(window, text="Champion 1: Choose your core element")
+champ_1_elemental_elements = ttk.Combobox(window, values=["Fire","Water","Ice","Space","Earth"])
+champ_1_elemental_label.grid(row=0,column=0)
+champ_1_elemental_elements.grid(row=1, column=0)
+
+champ_2_elemental_label = tkinter.Label(window, text="Champion 2: Choose your core element")
+champ_2_elemental_elements = ttk.Combobox(window, values=["Fire","Water","Ice","Space","Earth"])
+champ_2_elemental_label.grid(row=0,column=1)
+champ_2_elemental_elements.grid(row=1, column=1)
+
+
+select_core_elemental_button = tkinter.Button(window, text="Select Your Elements", command= list_champs_from_core)
+select_core_elemental_button.grid(row=2, column=0,)
+
+
+champ_1_name_label = tkinter.Label(window, text="Choose your CHAMPION")
+champ_1_name_combobox = ttk.Combobox(window, values=["Fire","Water","Ice","Space","Earth"])
+champ_1_name_label.grid(row=3,column=0)
+champ_1_name_combobox.grid(row=4, column=0)
+
+champ_2_name_label = tkinter.Label(window, text="Choose your CHAMPION")
+champ_2_name_combobox = ttk.Combobox(window, values=["Fire","Water","Ice","Space","Earth"])
+champ_2_name_label.grid(row=3,column=1)
+champ_2_name_combobox.grid(row=4, column=1)
+
+
+
+window.mainloop()
