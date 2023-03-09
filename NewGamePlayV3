@@ -23,8 +23,8 @@ class PowerEgg:
         self.attackmod = attackmod
         self.defensemod = defensemod
         self.hpmod = hpmod
-        
-       
+
+
 
 #DefineTheChampions        
 DarkWater = ChampionCard("DarkWater", "Water", 5, 5, "Yes", "Ice", "Fire", "Yes", 100)
@@ -85,7 +85,7 @@ def list_champs_from_core():
 #Define the function for combat.
     def lets_get_it_on():   
 
-        
+
         window3 = tkinter.Tk()
         window3.geometry("600x300")  # Size of the window 
         window3.title("Combat")
@@ -95,60 +95,46 @@ def list_champs_from_core():
 
         for championslist_item in championslist:
 
+                if championslist_item.name == champ_1_name_for_combat:
+                    champ1attributes = championslist_item
+                    champ1attributes_label = tkinter.Label(window3, bg= "white", text=champ1attributes.name)
+                    champ1attributes_label.grid(row=0,column=0)
+                
+
+
+
+
+        for championslist_item in championslist:
                 if championslist_item.name == champ_2_name_for_combat:
-                    
-             
-                    #  champ_1_name_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.name)
-                    #  champ_1_name_combat_label.grid(row=0,column=0)
-                    #  champ_1_hp_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.hp)
-                    #  champ_1_hp_combat_label.grid(row=1,column=0)
-                    #  champ_1_attackvalue_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.attackvalue)
-                    #  champ_1_attackvalue_combat_label.grid(row=2,column=0)
-                    #  champ_1_defensevalue_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.defensevalue)
-                    #  champ_1_defensevalue_combat_label.grid(row=3,column=0)
-                    #  champ_1_primaryelement_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.primaryelement)
-                    #  champ_1_primaryelement_combat_label.grid(row=4,column=0)
-                    #  champ_1_attackmultiplier_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.attackmultiplier)
-                    #  champ_1_attackmultiplier_combat_label.grid(row=5,column=0)
-                    #  champ_1_defensivemultiplier_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.defensivemultiplier)
-                    #  champ_1_defensivemultiplier_combat_label.grid(row=6,column=0)
+                    champ2attributes = championslist_item
+                    champ2attributes_label = tkinter.Label(window3, bg= "white", text=champ2attributes.name)
+                    champ2attributes_label.grid(row=0,column=3)
 
-                    #  champions_name_combat_label = tkinter.Label(window3, bg= "white", text="NAME")
-                    #  champions_name_combat_label.grid(row=0,column=2)
-                    #  champions_hp_combat_label = tkinter.Label(window3, bg= "white", text="HP")
-                    #  champions_hp_combat_label.grid(row=1,column=2)
-                    #  champions_attackvalue_combat_label = tkinter.Label(window3, bg= "white", text="ATTACK VALUE")
-                    #  champions_attackvalue_combat_label.grid(row=2,column=2)
-                    #  champions_defensevalue_combat_label = tkinter.Label(window3, bg= "white", text="DEFENSE VALUE")
-                    #  champions_defensevalue_combat_label.grid(row=3,column=2)
-                    #  champions_primaryelement_combat_label = tkinter.Label(window3, bg= "white", text="PRIMARY ELEMENT")
-                    #  champions_primaryelement_combat_label.grid(row=4,column=2)
-                    #  champions_attackmultiplier_combat_label = tkinter.Label(window3, bg= "white", text="ATTACK MULTIPLIER")
-                    #  champions_attackmultiplier_combat_label.grid(row=5,column=2)
-                    #  champions_defensivemultiplier_combat_label = tkinter.Label(window3, bg= "white", text="DEFENSIVE MULTIPLIER")
-                    #  champions_defensivemultiplier_combat_label.grid(row=6,column=2)
+        champions_name_combat_label = tkinter.Label(window3, bg= "white", text="CHAMPION NAME")
+        champions_name_combat_label.grid(row=0,column=2)
+        champions_hp_combat_label = tkinter.Label(window3, bg= "white", text="HP")
+        champions_hp_combat_label.grid(row=1,column=2)
+        champions_attackvalue_combat_label = tkinter.Label(window3, bg= "white", text="ATTACK VALUE")
+        champions_attackvalue_combat_label.grid(row=2,column=2)
+        champions_defensevalue_combat_label = tkinter.Label(window3, bg= "white", text="DEFENSE VALUE")
+        champions_defensevalue_combat_label.grid(row=3,column=2)
+        champions_primaryelement_combat_label = tkinter.Label(window3, bg= "white", text="PRIMARY ELEMENT")
+        champions_primaryelement_combat_label.grid(row=4,column=2)
+        champions_attackmultiplier_combat_label = tkinter.Label(window3, bg= "white", text="ATTACK MULTIPLIER")
+        champions_attackmultiplier_combat_label.grid(row=5,column=2)
+        champions_defensivemultiplier_combat_label = tkinter.Label(window3, bg= "white", text="DEFENSIVE MULTIPLIER")
+        champions_defensivemultiplier_combat_label.grid(row=6,column=2)
+                
 
-                    champ_2_name_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.name)
-                    champ_2_name_combat_label.grid(row=0,column=4)
-                    champ_2_hp_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.hp)
-                    champ_2_hp_combat_label.grid(row=1,column=4)
-                    champ_2_attackvalue_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.attackvalue)
-                    champ_2_attackvalue_combat_label.grid(row=2,column=4)
-                    champ_2_defensevalue_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.defensevalue)
-                    champ_2_defensevalue_combat_label.grid(row=3,column=4)
-                    champ_2_primaryelement_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.primaryelement)
-                    champ_2_primaryelement_combat_label.grid(row=4,column=4)
-                    champ_2_attackmultiplier_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.attackmultiplier)
-                    champ_2_attackmultiplier_combat_label.grid(row=5,column=4)
-                    champ_2_defensivemultiplier_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.defensivemultiplier)
-                    champ_2_defensivemultiplier_combat_label.grid(row=6,column=4)
+
+
 
 
         window2.destroy()
 
 
- 
-    
+
+
 
 
 #Open 2nd selection window
@@ -169,7 +155,7 @@ def list_champs_from_core():
 
     select_champion_button = tkinter.Button(window2, text="Select Your Champions", command= lets_get_it_on)
     select_champion_button.grid(row=2, column=0,)
-    
+
 
 
 
@@ -205,3 +191,53 @@ select_core_elemental_button.grid(row=2, column=0,)
 
 
 window.mainloop()
+
+
+
+
+
+
+                    #  champ_1_name_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.name)
+                    #  champ_1_name_combat_label.grid(row=0,column=0)
+                    #  champ_1_hp_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.hp)
+                    #  champ_1_hp_combat_label.grid(row=1,column=0)
+                    #  champ_1_attackvalue_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.attackvalue)
+                    #  champ_1_attackvalue_combat_label.grid(row=2,column=0)
+                    #  champ_1_defensevalue_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.defensevalue)
+                    #  champ_1_defensevalue_combat_label.grid(row=3,column=0)
+                    #  champ_1_primaryelement_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.primaryelement)
+                    #  champ_1_primaryelement_combat_label.grid(row=4,column=0)
+                    #  champ_1_attackmultiplier_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.attackmultiplier)
+                    #  champ_1_attackmultiplier_combat_label.grid(row=5,column=0)
+                    #  champ_1_defensivemultiplier_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.defensivemultiplier)
+                    #  champ_1_defensivemultiplier_combat_label.grid(row=6,column=0)
+
+                    #  champions_name_combat_label = tkinter.Label(window3, bg= "white", text="NAME")
+                    #  champions_name_combat_label.grid(row=0,column=2)
+                    #  champions_hp_combat_label = tkinter.Label(window3, bg= "white", text="HP")
+                    #  champions_hp_combat_label.grid(row=1,column=2)
+                    #  champions_attackvalue_combat_label = tkinter.Label(window3, bg= "white", text="ATTACK VALUE")
+                    #  champions_attackvalue_combat_label.grid(row=2,column=2)
+                    #  champions_defensevalue_combat_label = tkinter.Label(window3, bg= "white", text="DEFENSE VALUE")
+                    #  champions_defensevalue_combat_label.grid(row=3,column=2)
+                    #  champions_primaryelement_combat_label = tkinter.Label(window3, bg= "white", text="PRIMARY ELEMENT")
+                    #  champions_primaryelement_combat_label.grid(row=4,column=2)
+                    #  champions_attackmultiplier_combat_label = tkinter.Label(window3, bg= "white", text="ATTACK MULTIPLIER")
+                    #  champions_attackmultiplier_combat_label.grid(row=5,column=2)
+                    #  champions_defensivemultiplier_combat_label = tkinter.Label(window3, bg= "white", text="DEFENSIVE MULTIPLIER")
+                    #  champions_defensivemultiplier_combat_label.grid(row=6,column=2)
+
+                    # champ_2_name_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.name)
+                    # champ_2_name_combat_label.grid(row=0,column=4)
+                    # champ_2_hp_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.hp)
+                    # champ_2_hp_combat_label.grid(row=1,column=4)
+                    # champ_2_attackvalue_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.attackvalue)
+                    # champ_2_attackvalue_combat_label.grid(row=2,column=4)
+                    # champ_2_defensevalue_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.defensevalue)
+                    # champ_2_defensevalue_combat_label.grid(row=3,column=4)
+                    # champ_2_primaryelement_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.primaryelement)
+                    # champ_2_primaryelement_combat_label.grid(row=4,column=4)
+                    # champ_2_attackmultiplier_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.attackmultiplier)
+                    # champ_2_attackmultiplier_combat_label.grid(row=5,column=4)
+                    # champ_2_defensivemultiplier_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.defensivemultiplier)
+                    # champ_2_defensivemultiplier_combat_label.grid(row=6,column=4)
