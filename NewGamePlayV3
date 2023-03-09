@@ -82,8 +82,8 @@ def list_champs_from_core():
     window.destroy()
 
 
-#Define the function for combat.
-    def lets_get_it_on():   
+#Define the function to display the selected champion attributes.
+    def show_champ_attribs():   
 
 
         window3 = tkinter.Tk()
@@ -99,17 +99,39 @@ def list_champs_from_core():
                     champ1attributes = championslist_item
                     champ1attributes_label = tkinter.Label(window3, bg= "white", text=champ1attributes.name)
                     champ1attributes_label.grid(row=0,column=0)
-                
+                    champ1attributes_label = tkinter.Label(window3, bg= "white", text=champ1attributes.hp)
+                    champ1attributes_label.grid(row=1,column=0)                    
+                    champ1attributes_label = tkinter.Label(window3, bg= "white", text=champ1attributes.attackvalue)
+                    champ1attributes_label.grid(row=2,column=0)                    
+                    champ1attributes_label = tkinter.Label(window3, bg= "white", text=champ1attributes.defensevalue)
+                    champ1attributes_label.grid(row=3,column=0)                    
+                    champ1attributes_label = tkinter.Label(window3, bg= "white", text=champ1attributes.primaryelement)
+                    champ1attributes_label.grid(row=4,column=0)                    
+                    champ1attributes_label = tkinter.Label(window3, bg= "white", text=champ1attributes.attackmultiplier)
+                    champ1attributes_label.grid(row=5,column=0)                    
+                    champ1attributes_label = tkinter.Label(window3, bg= "white", text=champ1attributes.defensivemultiplier)
+                    champ1attributes_label.grid(row=6,column=0)  
 
-
-
+                                   
 
         for championslist_item in championslist:
                 if championslist_item.name == champ_2_name_for_combat:
                     champ2attributes = championslist_item
                     champ2attributes_label = tkinter.Label(window3, bg= "white", text=champ2attributes.name)
                     champ2attributes_label.grid(row=0,column=3)
-
+                    champ2attributes_label = tkinter.Label(window3, bg= "white", text=champ2attributes.hp)
+                    champ2attributes_label.grid(row=1,column=3)
+                    champ2attributes_label = tkinter.Label(window3, bg= "white", text=champ2attributes.attackvalue)
+                    champ2attributes_label.grid(row=2,column=3)
+                    champ2attributes_label = tkinter.Label(window3, bg= "white", text=champ2attributes.defensevalue)
+                    champ2attributes_label.grid(row=3,column=3)
+                    champ2attributes_label = tkinter.Label(window3, bg= "white", text=champ2attributes.primaryelement)
+                    champ2attributes_label.grid(row=4,column=3)
+                    champ2attributes_label = tkinter.Label(window3, bg= "white", text=champ2attributes.attackmultiplier)
+                    champ2attributes_label.grid(row=5,column=3)
+                    champ2attributes_label = tkinter.Label(window3, bg= "white", text=champ2attributes.defensivemultiplier)
+                    champ2attributes_label.grid(row=6,column=3)
+                    
         champions_name_combat_label = tkinter.Label(window3, bg= "white", text="CHAMPION NAME")
         champions_name_combat_label.grid(row=0,column=2)
         champions_hp_combat_label = tkinter.Label(window3, bg= "white", text="HP")
@@ -124,6 +146,9 @@ def list_champs_from_core():
         champions_attackmultiplier_combat_label.grid(row=5,column=2)
         champions_defensivemultiplier_combat_label = tkinter.Label(window3, bg= "white", text="DEFENSIVE MULTIPLIER")
         champions_defensivemultiplier_combat_label.grid(row=6,column=2)
+
+        move_to_combat_button = tkinter.Button(window3, text="Begin Combat", command= window3.destroy)
+        move_to_combat_button.grid(row=7, column=2,)
                 
 
 
@@ -153,7 +178,7 @@ def list_champs_from_core():
     champ_2_name_label.grid(row=0,column=1)
     champ_2_name_combobox.grid(row=1, column=1)
 
-    select_champion_button = tkinter.Button(window2, text="Select Your Champions", command= lets_get_it_on)
+    select_champion_button = tkinter.Button(window2, text="Select Your Champions", command= show_champ_attribs)
     select_champion_button.grid(row=2, column=0,)
 
 
@@ -191,6 +216,227 @@ select_core_elemental_button.grid(row=2, column=0,)
 
 
 window.mainloop()
+
+
+
+
+#Prompt For First Champion
+firstchampion = DarkWind
+#NameThefirstChampion
+print("Name -", firstchampion.name, " - Primary Element", firstchampion.primaryelement, " - Attack Value", firstchampion.attackvalue, " - Defensive Value", firstchampion.defensevalue, " - Attack Multiplier,", firstchampion.attackmultiplier, " - Defense Multiplier,", firstchampion.defensivemultiplier)
+
+
+#Prompt For Second Champion
+secondchampion = LightGold
+print("Name -", secondchampion.name, " - Primary Element", secondchampion.primaryelement, " - Attack Value", secondchampion.attackvalue, " - Defensive Value", secondchampion.defensevalue, " - Attack Multiplier,", secondchampion.attackmultiplier, " - Defense Multiplier,", secondchampion.defensivemultiplier)
+
+#Set champion HP
+firstchamphp = firstchampion.hp
+secondchamphp = secondchampion.hp
+
+
+#Start the round
+turns = range(1, 5)
+
+#Attack\Defense Value Computation
+
+def battlecalcoff(championbattlecalco):
+    #Offense Turn
+    #Flip The Coin
+    import random
+
+    #Can I Attack
+    baseattackvalue = 0
+    def cointoss():
+        return random.choice(["Yes", "No"])
+
+    #How powerful is the attack
+    def diceroll():
+        return random.randint(1,6)
+
+    CanIAttack = cointoss()
+
+    AttackMultiplier = diceroll()
+
+    if CanIAttack == "Yes":
+     
+     baseattackvalue = championbattlecalco.attackvalue * AttackMultiplier
+     print(championbattlecalco.name, "rolls a", AttackMultiplier,  "has", championbattlecalco.attackvalue, "attack")
+     print("Base attack is", baseattackvalue)
+    elif CanIAttack == "No":
+     print(championbattlecalco.name, "can't attack, attack value is 0")
+     baseattackvalue = 0
+
+    
+    return baseattackvalue, CanIAttack, AttackMultiplier
+    
+#Defense Turn
+def battlecalcdef(championbattlecalcd):
+    basedefensevalue = 0
+    totaldefensevalue = 0
+
+    import random
+    
+    def cointoss():
+        return random.choice(["Yes", "No"])
+
+    def diceroll():
+        return random.randint(1,6)
+
+    CanIDefend = cointoss()
+
+    DefenseMultiplier = diceroll()
+
+    if CanIDefend == "Yes":
+     
+     basedefensevalue = championbattlecalcd.defensevalue * DefenseMultiplier
+     
+     print(championbattlecalcd.name, "rolls a", DefenseMultiplier, "and has", championbattlecalcd.defensevalue, "defense")
+     print("Base defense is", basedefensevalue)
+     
+    elif CanIDefend == "No":
+     print(championbattlecalcd.name, "fails to defend themself defense value is 0")
+     basedefensevalue = 0
+ 
+    
+    return basedefensevalue, CanIDefend, DefenseMultiplier
+
+
+
+
+#Determine the elemental attack multipliers
+def elementattackmulticalc(firstchampion, secondchampion, baseattackvaluefirstchamp, basedefensevaluesecondchamp):
+ totalattackvalue=baseattackvaluefirstchamp
+ 
+ if firstchampion.attackmultiplier == secondchampion.primaryelement:
+  totalattackvalue = baseattackvaluefirstchamp * 2
+
+ 
+ else:
+  
+  totalattackvalue = baseattackvaluefirstchamp
+ #Determine the defensive elemental multiplier
+ if firstchampion.primaryelement == secondchampion.defensivemultiplier:
+  totaldefensevalue = basedefensevaluesecondchamp * 2
+
+ else:
+  totaldefensevalue = basedefensevaluesecondchamp 
+
+ return totalattackvalue, totaldefensevalue
+
+
+#Define the Power Eggs
+class PowerEgg:
+    def __init__(self, refno, description, champion1, champion2, champattack, champdefense, ch1hpmod, ch2hpmod):
+        self.refno = refno
+        self.description = description
+        self.champion1 = champion1
+        self.champion2 = champion2
+        self.champattack = champattack
+        self.defensemod = champdefense
+        self.ch1hpmod = ch1hpmod
+        self.ch2hpmod = ch2hpmod
+
+
+pecombineattackanddefense = PowerEgg(1, "Combine Attack and Defense Attributes", firstchampion, secondchampion, firstchampion.attackvalue, firstchampion.defensevalue, firstchampion.hp, secondchampion.hp)
+ 
+def drawpoweregg():
+     import random
+     powereggrefno = random.randint(1,10)
+     return powereggrefno
+
+
+
+def combat(firstchampion, secondchampion, ftotalattackno, stotaldefno, firstchamphp, secondchamphp):
+    #print(firstchampion.name, "enters the turn with", firstchamphp, secondchampion.name, "enters the turn with", secondchamphp)
+    print(firstchampion.name ,"attacks", secondchampion.name, "with", ftotalattackno, secondchampion.name, "defends with", stotaldefno)
+
+    if ftotalattackno == 0 and stotaldefno == 0:
+        print("No damage this turn, both champions rest.")
+ ##        print("Draw a Power Egg")
+##        powereggrefno = drawpoweregg()
+##        print(firstchampion.name, "pulled Power Egg number",powereggrefno,"!")
+##        powereggrefno = drawpoweregg()
+##        print( secondchampion.name, "pulled Power Egg number",powereggrefno, "!")
+        
+    elif ftotalattackno > stotaldefno:
+      #print("Attack higher than defense, run first condition")
+      damage = ftotalattackno - stotaldefno
+      print(secondchampion.name,"loses", damage, "HP")
+      secondchamphp = secondchamphp - damage
+      #print(secondchamphp, "HP remaining for", secondchampion.name)
+    else:
+        #print("Defense higher than attack, run second condition")
+        damage = stotaldefno - ftotalattackno
+        print(firstchampion.name,"loses", damage, "HP")
+        firstchamphp = firstchamphp - damage
+        #print(firstchamphp, "HP remaining for", firstchampion.name)
+    return firstchamphp, secondchamphp
+
+##Engage Combat
+firstchamphp = firstchampion.hp
+secondchamphp = secondchampion.hp
+
+
+#Gameplay
+for turn in turns:
+    #input("Press Enter to Roll...")
+    if firstchamphp <= 0 or secondchamphp <= 0:
+        if firstchamphp <= 0:
+            print(firstchampion.name, "is knocked out, ", secondchampion.name, "wins!!!")
+        else:
+            print(secondchampion.name, "is knocked out, ", firstchampion.name, "wins!!!")
+            
+        break
+
+
+
+    else:
+
+                #ImportMessageBoxCode
+        import ctypes  # An included library with Python install.
+        def Mbox(title, text, style):
+            return ctypes.windll.user32.MessageBoxW(0, text, title, style)
+        x = Mbox('Welcome', 'Welcome to Champions of the Bobiotic Table. Do you want to play?', 4)
+        if x == 7:
+            break
+        
+        print("Turn number", turn)
+
+        
+        if (turn % 2) != 0:
+            
+            print(firstchampion.name, "enters the turn with", firstchamphp, secondchampion.name, "enters the turn with", secondchamphp)
+            
+            baseattackvaluefirstchamp, caniattack1, attackmultiplier = battlecalcoff(firstchampion)
+
+            basedefensevaluesecondchamp, canidefend2, defensemultiplier = battlecalcdef(secondchampion)
+                    
+            ftotalattackno, stotaldefno = elementattackmulticalc(firstchampion, secondchampion, baseattackvaluefirstchamp, basedefensevaluesecondchamp)
+            combatoutcome = combat(firstchampion, secondchampion, ftotalattackno, stotaldefno, firstchamphp, secondchamphp)
+            firstchamphp = combatoutcome[0]
+            secondchamphp = combatoutcome[1]
+        else:
+            print(secondchampion.name, "enters the turn with", secondchamphp, firstchampion.name, "enters the turn with", firstchamphp, )
+            baseattackvaluefirstchamp, caniattack1, attackmultiplier = battlecalcoff(secondchampion)
+
+            basedefensevaluesecondchamp, canidefend2, defensemultiplier = battlecalcdef(firstchampion)
+                    
+            ftotalattackno, stotaldefno = elementattackmulticalc(firstchampion, secondchampion, baseattackvaluefirstchamp, basedefensevaluesecondchamp)
+
+            combatoutcome = combat(secondchampion, firstchampion, ftotalattackno, stotaldefno,secondchamphp, firstchamphp)
+            firstchamphp = combatoutcome[1]
+            secondchamphp = combatoutcome[0]
+
+
+
+print(firstchampion.name, "has", firstchamphp, secondchampion.name, "has", secondchamphp)
+print("The round is over.")
+
+
+
+
+
 
 
 
