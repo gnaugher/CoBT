@@ -1,6 +1,10 @@
+#Import tkinter
 import tkinter
 from tkinter import ttk
 from tkinter import messagebox
+
+# Import the pandas module  
+import pandas as ps
 
 class ChampionCard:
     def __init__(self, name, primaryelement, attackvalue, defensevalue, attackmultiplierav, attackmultiplier, defensivemultiplier, defensivemultiplierav, hp):
@@ -26,7 +30,13 @@ class PowerEgg:
 
 
 
-#DefineTheChampions        
+#DefineTheChampions  Import the csv contaning all the attributes of the champions
+
+championslist = ps.read_csv('BobioticTable.csv')
+
+
+
+
 DarkWater = ChampionCard("DarkWater", "Water", 5, 5, "Yes", "Ice", "Fire", "Yes", 100)
 Poison = ChampionCard("Poison", "Ice", 5, 5, "Yes","Wind", "Water", "Yes",100)
 Love = ChampionCard("Love", "Wind", 1, 9,"Yes", "Fire", "Ice","Yes", 100)
@@ -47,7 +57,8 @@ Brick = ChampionCard("Brick", "Earth", 8, 2, "Yes","Ice", "Fire","Yes", 100)
 Gold = ChampionCard("Gold", "Earth", 5, 5, "Yes","Water", "Earth", "Yes",100)        
 
 #Save all the champions
-championslist = [DarkWater,Poison,Love ,DarkWind ,DarkEarth ,LightGold ,Fire ,Water ,Earth ,Ice ,Wind ,Lightening ,Lava ,Metal ,Dark ,DarkFire ,Brick ,Gold]
+manualchampionslist = [DarkWater,Poison,Love ,DarkWind ,DarkEarth ,LightGold ,Fire ,Water ,Earth ,Ice ,Wind ,Lightening ,Lava ,Metal ,Dark ,DarkFire ,Brick ,Gold]
+
 
 #Function to get a list of champions from the primary element
 def list_champs_from_core():
@@ -62,17 +73,28 @@ def list_champs_from_core():
     champion1fromelementlist=[]
     champion2fromelementlist=[]
 
-    for championslist_item in championslist:
+    champion1fromelementlist=[]
+    for ename, pelement in zip(championslist['name'], championslist['primaryelement']):
+        if pelement == champ_1_selected_element:
+            print(ename, "Steps Forward")
+            champion1fromelementlist.append(ename)
 
-        if championslist_item.primaryelement == champ_1_selected_element:
-             print(championslist_item.name, "steps forward")
-             champion1fromelementlist.append(championslist_item.name)
+    # for championslist_item in championslist:
 
-    for championslist_item in championslist:
+    #     if championslist_item.primaryelement == champ_1_selected_element:
+    #          print(championslist_item.name, "steps forward")
+    #          champion1fromelementlist.append(championslist_item.name)
+    champion2fromelementlist=[]
+    for ename2, pelement2 in zip(championslist['name'], championslist['primaryelement']):
+        if pelement2 == champ_2_selected_element:
+            print(ename2, "Steps Forward")
+            champion2fromelementlist.append(ename2)
 
-        if championslist_item.primaryelement == champ_2_selected_element:
-             print(championslist_item.name, "steps forward")
-             champion2fromelementlist.append(championslist_item.name)         
+
+    # for championslist_item in championslist:
+    #     if championslist_item.primaryelement == champ_2_selected_element:
+    #          print(championslist_item.name, "steps forward")
+    #          champion2fromelementlist.append(championslist_item.name)         
 
     #print the selections
     print(champ_1_selected_element, champ_2_selected_element)
@@ -218,6 +240,7 @@ select_core_elemental_button.grid(row=2, column=0,)
 window.mainloop()
 
 
+#print("Did we save the name?", champ1attributes)
 
 
 #Prompt For First Champion
@@ -438,52 +461,3 @@ print("The round is over.")
 
 
 
-
-
-
-
-
-                    #  champ_1_name_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.name)
-                    #  champ_1_name_combat_label.grid(row=0,column=0)
-                    #  champ_1_hp_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.hp)
-                    #  champ_1_hp_combat_label.grid(row=1,column=0)
-                    #  champ_1_attackvalue_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.attackvalue)
-                    #  champ_1_attackvalue_combat_label.grid(row=2,column=0)
-                    #  champ_1_defensevalue_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.defensevalue)
-                    #  champ_1_defensevalue_combat_label.grid(row=3,column=0)
-                    #  champ_1_primaryelement_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.primaryelement)
-                    #  champ_1_primaryelement_combat_label.grid(row=4,column=0)
-                    #  champ_1_attackmultiplier_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.attackmultiplier)
-                    #  champ_1_attackmultiplier_combat_label.grid(row=5,column=0)
-                    #  champ_1_defensivemultiplier_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.defensivemultiplier)
-                    #  champ_1_defensivemultiplier_combat_label.grid(row=6,column=0)
-
-                    #  champions_name_combat_label = tkinter.Label(window3, bg= "white", text="NAME")
-                    #  champions_name_combat_label.grid(row=0,column=2)
-                    #  champions_hp_combat_label = tkinter.Label(window3, bg= "white", text="HP")
-                    #  champions_hp_combat_label.grid(row=1,column=2)
-                    #  champions_attackvalue_combat_label = tkinter.Label(window3, bg= "white", text="ATTACK VALUE")
-                    #  champions_attackvalue_combat_label.grid(row=2,column=2)
-                    #  champions_defensevalue_combat_label = tkinter.Label(window3, bg= "white", text="DEFENSE VALUE")
-                    #  champions_defensevalue_combat_label.grid(row=3,column=2)
-                    #  champions_primaryelement_combat_label = tkinter.Label(window3, bg= "white", text="PRIMARY ELEMENT")
-                    #  champions_primaryelement_combat_label.grid(row=4,column=2)
-                    #  champions_attackmultiplier_combat_label = tkinter.Label(window3, bg= "white", text="ATTACK MULTIPLIER")
-                    #  champions_attackmultiplier_combat_label.grid(row=5,column=2)
-                    #  champions_defensivemultiplier_combat_label = tkinter.Label(window3, bg= "white", text="DEFENSIVE MULTIPLIER")
-                    #  champions_defensivemultiplier_combat_label.grid(row=6,column=2)
-
-                    # champ_2_name_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.name)
-                    # champ_2_name_combat_label.grid(row=0,column=4)
-                    # champ_2_hp_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.hp)
-                    # champ_2_hp_combat_label.grid(row=1,column=4)
-                    # champ_2_attackvalue_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.attackvalue)
-                    # champ_2_attackvalue_combat_label.grid(row=2,column=4)
-                    # champ_2_defensevalue_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.defensevalue)
-                    # champ_2_defensevalue_combat_label.grid(row=3,column=4)
-                    # champ_2_primaryelement_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.primaryelement)
-                    # champ_2_primaryelement_combat_label.grid(row=4,column=4)
-                    # champ_2_attackmultiplier_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.attackmultiplier)
-                    # champ_2_attackmultiplier_combat_label.grid(row=5,column=4)
-                    # champ_2_defensivemultiplier_combat_label = tkinter.Label(window3, bg= "white", text=championslist_item.defensivemultiplier)
-                    # champ_2_defensivemultiplier_combat_label.grid(row=6,column=4)
